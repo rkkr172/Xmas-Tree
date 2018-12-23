@@ -10,7 +10,7 @@ color=0
 tput setaf 2; tput bold
 
 # Tree
-for ((i=1; i<20; i+=2))
+for ((i=1; i<35; i+=2))
 {
     tput cup $lin $col
     for ((j=1; j<=i; j++))
@@ -27,19 +27,21 @@ tput sgr0; tput setaf 3
 for ((i=1; i<=2; i++))
 {
     tput cup $((lin++)) $c
-    echo 'mWm'
+    echo 'wMw'
 }
 new_year=$(date +'%Y')
 let new_year++
 tput setaf 1; tput bold
-tput cup $lin $((c - 6)); echo MERRY CHRISTMAS
-tput cup $((lin + 1)) $((c - 10)); echo And lots of WISHES in $new_year
+tput cup $lin $((c - 6)); echo MERRY CHRISTMAS $new_year
+tput cup $((lin + 1)) $((c - 10)); echo And lots of WISHES to You
+#tput cup $((lin + 2)) $((c - 2)); echo --Lnw Tutorials
+# tput cup $((lin + 2)) $((c - 2)); echo https://www.facebook.com/lnwtutorial
 let c++
 k=1
 
 # Lights and decorations
 while true; do
-    for ((i=1; i<=35; i++)) {
+    for ((i=1; i<=50; i++)) {
         # Turn off the lights
         [ $k -gt 1 ] && {
             tput setaf 2; tput bold
@@ -47,12 +49,12 @@ while true; do
             unset line[$[k-1]$i]; unset column[$[k-1]$i]  # Array cleanup
         }
 
-        li=$((RANDOM % 9 + 3))
+        li=$((RANDOM % 15 + 5))
         start=$((c-li+2))
         co=$((RANDOM % (li-2) * 2 + 1 + start))
         tput setaf $color; tput bold   # Switch colors
         tput cup $li $co
-        echo R
+        echo o
         line[$k$i]=$li
         column[$k$i]=$co
         color=$(((color+1)%8))
@@ -64,7 +66,14 @@ while true; do
             echo $l
             let sh++
             sleep 0.01
-        done
+	done	
+#	for m in 2 0 1 9
+#        do
+#            tput cup $((lin+2)) $((c+sh))
+#            echo $m
+#            let sh++
+#            sleep 0.01
+#        done
     }
     k=$((k % 2 + 1))
 done
